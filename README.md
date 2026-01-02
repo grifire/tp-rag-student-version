@@ -105,11 +105,19 @@ https://python.langchain.com/docs/integrations/chat/ollama/
 
 ## Etape 4. - Evaluation
 
-- Suivre le cours [https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/](https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/) 
-- Suivre et exécuter le notebook https://colab.research.google.com/drive/1Wzj1JQIPut78CPkcr5tjY9f98cjPa40Z#scrollTo=AI5T9icqfyuX sans faire les exercice de la fin du notebook.
-
 **Exercice 8 : evaluation**
 
-- Faire évoluer le notebook développé dans le cours [https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/](https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/) pour y ajouter plusieurs analystes (cf. "Génération des analystes: Human-In-The-Loop")
-- (optionnel) Intégrer l'humain dans la boucle (HITL) dans le processus d'évaluation.
-- (optionnel) A l'aide de gradio, mettre en place une IHM permettant à l'humain d'interagir dans le processus
+
+- Suivre le cours [COURS_MULTI_AGENTS_DATA.md](./multi_agent_data/COURS_MULTI_AGENTS_DATA.md) (ressource utile : [https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/](https://www.deeplearning.ai/short-courses/building-evaluating-advanced-rag/))
+- Modifier le notebook [L6](./multi_agent_data/notebooks/L6/L6.ipynb) en le transformant pour une exécution locale sur Google Colab en utilisant [OpenRouter](https://openrouter.ai/) et un petit LLM (e.g. nano). **Clé API à demander** et stabiliser avec les évaluation
+
+
+**Conseils**
+- L'idée est de modifier le nœud `cortex_researcher` Snowflake du graphe pour le remplacer par :
+    1. Un RAG Local :  à la place de la recherche Snowflake, intégrer les retriever de votre code RAG  et étudier la possibilité d'indexation hiérarchique type ParentDocumentRetriever pouvoir comparer 2 stratégies et ajuster les lengths des 2.
+    2. Du SQL Local :  Remplacer la partie données structurées par un DuckDB.
+    3. Stabilisation : Utiliser les feedbacks de TruLens (RAG Triad + GPA) pour ajuster les prompts et la taille des chunks afin que l'agent performe aussi bien en local qu'avec Cortex.
+
+**Exercice 9 : recherche web (Optionnel)**
+
+Remplacer l'outil de recherche Web Tavily (il a tout de même 1000 requetes/mois) par DuckDuckGo ou SearXNG pour être full open-source/local.
