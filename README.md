@@ -108,14 +108,19 @@ https://python.langchain.com/docs/integrations/chat/ollama/
 **Exercice 8 : evaluation**
 
 
-- Suivre le cours [https://www.deeplearning.ai/short-courses/building-and-evaluating-data-agents/](https://www.deeplearning.ai/short-courses/building-and-evaluating-data-agents/))
+- Suivre le cours [https://www.deeplearning.ai/short-courses/building-and-evaluating-data-agents/](https://www.deeplearning.ai/short-courses/building-and-evaluating-data-agents/)
     - Support de cours [COURS_MULTI_AGENTS_DATA.md](./multi_agent_data/COURS_MULTI_AGENTS_DATA.md) 
-- Modifier le notebook [L6](./multi_agent_data/notebooks/L6/L6.ipynb) en le transformant pour une exécution locale sur Google Colab en utilisant [OpenRouter](https://openrouter.ai/) et un petit LLM (e.g. nano). **Clé API à demander** et stabiliser avec les évaluation
+- Modifier le notebook [L6](./multi_agent_data/notebooks/L6/L6_évolution_Monitoring,_au_RAG_SQL,_à_l'Optimisation.ipynb) pour 
+    1. Ajouter un RAG Local :  à la place de la recherche Snowflake, intégrer les retriever de votre code RAG  et étudier la possibilité d'indexation hiérarchique type ParentDocumentRetriever pouvoir comparer 2 stratégies et ajuster les lengths des 2
+    2. Ajouter un module SQL local :  remplacer la partie données structurées par un DuckDB.
+    3. Compléter la partie Optimisation
+- **Clé API à demander** 
 
 
 **Conseils**
+- Utiliser le provider Groq et les modèles gratuits comme `llama-3.1-8b-instant`
 - L'idée est de modifier le nœud `cortex_researcher` Snowflake du graphe pour le remplacer par :
-    1. Un RAG Local :  à la place de la recherche Snowflake, intégrer les retriever de votre code RAG  et étudier la possibilité d'indexation hiérarchique type ParentDocumentRetriever pouvoir comparer 2 stratégies et ajuster les lengths des 2.
+    1. Un RAG Local :  à la place de la recherche Snowflake, intégrer les retrievers de votre code RAG et étudier la possibilité d'indexation hiérarchique type ParentDocumentRetriever pouvoir comparer 2 stratégies et ajuster les lengths des 2.
     2. Du SQL Local :  Remplacer la partie données structurées par un DuckDB.
     3. Stabilisation : Utiliser les feedbacks de TruLens (RAG Triad + GPA) pour ajuster les prompts et la taille des chunks afin que l'agent performe aussi bien en local qu'avec Cortex.
 
